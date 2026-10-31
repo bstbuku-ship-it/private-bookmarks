@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>私密书签管家</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="mode-full">
+  <!-- 解锁界面 -->
+  <section id="lock" class="lock">
+    <form id="lock-form" class="lock-card" autocomplete="off" novalidate>
+      <img class="lock-logo" src="icons/icon128.png" alt="" width="64" height="64">
+      <h1 id="lock-title">私密书签管家</h1>
+      <p id="lock-sub" class="lock-sub">输入密码解锁</p>
+
+      <label class="field pw">
+        <span class="sr-only">密码</span>
+        <input id="pin" type="password" placeholder="密码" autocomplete="off" autofocus>
+        <button type="button" class="eye" data-eye="pin" aria-label="显示或隐藏密码" tabindex="-1"></button>
+      </label>
+      <label class="field pw hidden" id="pin2-wrap">
+        <span class="sr-only">再次输入密码</span>
+        <input id="pin2" type="password" placeholder="再次输入密码" autocomplete="off">
+        <button type="button" class="eye" data-eye="pin2" aria-label="显示或隐藏密码" tabindex="-1"></button>
+      </label>
+
+      <p id="lock-err" class="lock-err" role="alert" aria-live="assertive"></p>
+      <button id="unlock" type="submit" class="btn primary block">解锁</button>
+      <button id="forgot" type="button" class="link">忘记密码？</button>
+      <button id="restore" type="button" class="link hidden">已有备份文件？从备份恢复</button>
+    </form>
+  </section>
+
+  <!-- 主界面 -->
+  <div id="app" class="app hidden">
+    <header class="topbar">
+      <div class="brand"><img src="icons/icon32.png" alt="" width="22" height="22"><span>私密书签管家</span><button id="version-pill" class="version-pill" type="button" title="点击检查更新">v1.0.0</button></div>
+      <label class="search">
+        <span data-i="search"></span>
+        <input id="search" type="search" placeholder="搜索书签" autocomplete="off" spellcheck="false">
+      </label>
+      <div class="actions">
+        <button id="btn-add" class="btn primary" title="添加书签"><span data-i="add"></span><span id="btn-add-text">添加书签</span></button>
+        <button id="btn-bulk" class="ibtn" title="批量添加书签" aria-label="批量添加书签"><span data-i="bulk"></span></button>
+        <button id="btn-folder" class="ibtn" title="新建文件夹" aria-label="新建文件夹"><span data-i="newfolder"></span></button>
+        <button id="btn-more" class="ibtn" title="更多" aria-label="更多" aria-haspopup="menu"><span data-i="more"></span></button>
+        <button id="btn-expand" class="ibtn popup-only" title="在新标签页中展开" aria-label="展开"><span data-i="expand"></span></button>
+        <button id="btn-lock" class="ibtn" title="锁定" aria-label="锁定"><span data-i="lock"></span></button>
+      </div>
+    </header>
+
+    <div class="body">
+      <nav id="tree" class="sidebar full-only" aria-label="文件夹"></nav>
+      <main class="content">
+        <div id="crumbs" class="crumbs" aria-label="当前位置"></div>
+        <div id="list" class="list" role="list"></div>
+        <footer class="status">
+          <span id="status-count"></span>
+          <span class="hint">书签已加密保存在本机，只在输入密码后可见</span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <div id="menu" class="menu hidden" role="menu"></div>
+  <div id="overlay" class="overlay hidden"></div>
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <script src="store.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
